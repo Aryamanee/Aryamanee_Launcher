@@ -1,0 +1,23 @@
+{
+  "login": "Login",
+  "cancel": "Cancel",
+  "email": "Email: ",
+  "password": "Password: ",
+  "incorrect_login": "Wrong Email or Password",
+  "login_error": "Login Error",
+  "add_account": "Add Account",
+  "add_microsoft_account": "Add Microsoft Account",
+  "add_cracked_account": "Add Cracked Account",
+  "account": "Account: ",
+  "version": "Version: ",
+  "type": "Type: ",
+  "fabric": "Fabric",
+  "forge": "Forge",
+  "vanilla": "Vanilla",
+  "release": "Releases Only: ",
+  "add_version": "Add Version",
+  "install": "Install",
+  "installing": "Installing",
+  "launch_minecraft": "Launch Minecraft",
+  "username": "Username: "
+}
