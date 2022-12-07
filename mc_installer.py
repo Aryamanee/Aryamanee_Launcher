@@ -21,19 +21,16 @@ def main(type: str, ver: str):
               [sg.ProgressBar(max_value=0, key="progressbar")],
               [sg.Text("", key="statusbox"),]
               ]
-    window = sg.Window(title = lang["installing"] + " " + type + " " + ver, layout = layout, size = (300, 100), enable_close_attempted_event=True, finalize=True)
+    window = sg.Window(title = "Aryamanee Launcher - " + lang["installing"] + " " + type + " " + ver, layout = layout, size = (300, 100), enable_close_attempted_event=True, finalize=True)
 
     def set_status(status: str):
         nonlocal current_status
         current_status=status
         window["statusbox"].Update(current_status)
-        #print(current_status)
 
     def set_progress(progress: int):
         nonlocal current_progress
         current_progress = progress
-        #print(str(current_progress) + " pro")
-        #print(str(current_max) + " max")
         if current_max!=0:
             window["progressbar"].UpdateBar(current_count=current_progress, max=current_max)
 
@@ -41,8 +38,6 @@ def main(type: str, ver: str):
         nonlocal current_max
         current_max = new_max
         window["progressbar"].UpdateBar(current_count=current_progress, max=current_max)
-        print("max"+ str(current_max))
-        print("pro" + str(current_progress))
 
     callback = {
     "setStatus": set_status,
@@ -73,4 +68,3 @@ def main(type: str, ver: str):
 
 if __name__ == "__main__":
     main(argv[1], argv[2])
-    #main("Forge", "1.16.1")

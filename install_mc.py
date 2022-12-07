@@ -19,7 +19,7 @@ def main(pos = (323, 144)):
         [sg.Button(button_text="Close"), sg.ProgressBar(max_value=100, key="progressbar")]
     ]
 
-    window = sg.Window('Microsoft Login', layout, size=(720,480), relative_location=(0,0), location=pos)
+    window = sg.Window('Aryamanee Launcher - Add Version', layout, size=(720,480), relative_location=(0,0), location=pos)
     while True:
         event, values = window.read()
         print(values)

@@ -30,11 +30,15 @@ def main(pos=(0,0)):
             cracked = True
         accountnames.append(account_class(acc, accounts[acc]["username"], cracked, accounts[acc]["email"], accounts[acc]["password"]))
 
+    versionnames = []
+    for version in mcll.utils.get_installed_versions(".minecraft"):
+        versionnames.append(version["id"])
+
     layout = [[sg.Text(lang["account"], size=(7, 1)), sg.Combo(values=accountnames, readonly=True), sg.Button(lang["add_microsoft_account"]), sg.Button(lang["add_cracked_account"])],
-              [sg.Text(lang["version"], size=(7, 1)), sg.Combo(size=(70,1), values=mcll.utils.get_installed_versions(".minecraft"), readonly=True), sg.Button(lang["add_version"])],
+              [sg.Text(lang["version"], size=(7, 1)), sg.Combo(size=(70,1), values=versionnames, readonly=True), sg.Button(lang["add_version"])],
               [sg.Button(lang["launch_minecraft"])]]
 
-    window = sg.Window('Window Title', layout, size=(720, 480), relative_location=(0, 0), location=pos)
+    window = sg.Window('Aryamanee Launcher', layout, size=(720, 480), relative_location=(0, 0), location=pos)
     # Event Loop to process "events" and get the "values" of the inputs
     while True:
         event, values = window.read()

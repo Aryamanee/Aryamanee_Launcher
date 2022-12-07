@@ -28,12 +28,10 @@ def main(pos = (323, 144)):
         [sg.Button(button_text=lang["add_account"]), sg.Button(button_text="Close")]
     ]
 
-    window = sg.Window('Cracked Login', layout, size=(720,480), relative_location=(0,0), finalize=True)
+    window = sg.Window('Aryamanee Launcher - Cracked Login', layout, size=(720,480), relative_location=(0,0), finalize=True)
 
     while True:
         event, values = window.read()
-        print(values)
-        print(event)
 
         if event == sg.WIN_CLOSED or event == 'Close': # if user closes window or clicks cancel
             pos=window.current_location()
