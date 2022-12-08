@@ -79,7 +79,6 @@ def main(pos = (323, 144)):
             elif values[0] == lang["forge"]:
                 print(mcll.forge.find_forge_version(values["-versions-"]))
                 #print(mcll.forge.is_forge_version_valid(mcll.forge.find_forge_version(values["-versions-"])))
-                
 
 
 
