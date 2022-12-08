@@ -82,7 +82,7 @@ def main(pos=(0,0)):
                         "uuid": login.uuid,
                         "token": login.access_token
                     }
-                    cmd = mcll.command.get_minecraft_command(values[1]["id"], ".minecraft", options)
+                    cmd = mcll.command.get_minecraft_command(values[1], ".minecraft", options)
                     subprocess.Popen(cmd)
                 except msmcauth.InvalidCredentials:
                     sg.popup(lang["incorrect_login"], title=lang["login_error"])
