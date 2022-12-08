@@ -69,7 +69,9 @@ def main(pos = (323, 144)):
                 window["-versions-"].Update(values=versionsdisplay)
                 window[lang["install"]].Update(disabled=True)
         if event == lang["install"]:
-            subprocess.Popen("py mc_installer.py " + values[0] + " " + values["-versions-"])
+            #subprocess.Popen("py mc_installer.py " + values[0] + " " + values["-versions-"])
+            import mc_installer
+            mc_installer.main(values[0], values["-versions-"])
             if values[0] == lang["vanilla"]:
                 print(values["-versions-"])
             elif values[0] == lang["fabric"]:
