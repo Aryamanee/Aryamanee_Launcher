@@ -5,20 +5,21 @@ import json
 from accounts.account import account_class
 import subprocess
 from uuid import uuid4
+from pathlib import Path
 def main(pos=(0,0)):
-    langfile = open("lang\\en_us.json", "r")
+    langfile = open(Path("lang/en_us.json"), "r")
     lang = json.loads(langfile.read())
     langfile.close()
 
     sg.theme('DarkAmber')
 
     try:
-        accountsfile = open("accounts\\accounts.json", "r")
+        accountsfile = open(Path("accounts/accounts.json"), "r")
     except FileNotFoundError:
-        accountsfile = open("accounts\\accounts.json", "w+")
+        accountsfile = open(Path("accounts/accounts.json"), "w+")
         accountsfile.write("{}")
         accountsfile.close()
-        accountsfile = open("accounts\\accounts.json", "r")
+        accountsfile = open(Path("accounts/accounts.json"), "r")
     accounts = json.loads(accountsfile.read())
     accountsfile.close()
     accountnames=[]

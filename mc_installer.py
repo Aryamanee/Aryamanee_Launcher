@@ -6,12 +6,14 @@ import json
 import minecraft_launcher_lib as mcll
 from sys import argv
 import urllib.request
+from pathlib import Path
+
 def main(type: str, ver: str):
     current_max = 0
     current_progress = 0
     current_status = ""
 
-    langfile = open("lang\\en_us.json", "r")
+    langfile = open(Path("lang/en_us.json"), "r")
     lang = json.loads(langfile.read())
     langfile.close()
 
@@ -59,7 +61,7 @@ def main(type: str, ver: str):
         else:
             print(mcll.utils.get_java_executable())
             fv = mcll.forge.find_forge_version(ver)
-            #mcll.forge.run_forge_installer(ver, "C:\\Users\\aryam\\PycharmProjects\\Aryamanee_Launcher\\.minecraft\\runtime\\jre-legacy\\windows-x64\\jre-legacy\\bin\\java.exe")
+            #mcll.forge.run_forge_installer(ver, "C:/Users/aryam/PycharmProjects/Aryamanee_Launcher/.minecraft/runtime/jre-legacy/windows-x64/jre-legacy/bin/java.exe")
             urllib.request.urlretrieve("https://files.minecraftforge.net/maven/net/minecraftforge/forge/"+fv+"/forge-"+fv+"-installer.jar", "forge-"+fv+"-installer.jar")
             subprocess.run(mcll.utils.get_java_executable()+" -jar "+f"forge-{fv}-installer.jar")
             os.remove(f"forge-{fv}-installer.jar")

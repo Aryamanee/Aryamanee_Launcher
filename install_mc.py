@@ -4,9 +4,10 @@ import PySimpleGUI as sg
 import json
 import minecraft_launcher_lib as mcll
 import subprocess
+from pathlib import Path
 
 def main(pos = (323, 144)):
-    langfile = open("lang\\en_us.json", "r")
+    langfile = open(Path("lang/en_us.json"), "r")
     lang = json.loads(langfile.read())
     langfile.close()
     sg.theme("DarkAmber")
@@ -69,7 +70,7 @@ def main(pos = (323, 144)):
                 window["-versions-"].Update(values=versionsdisplay)
                 window[lang["install"]].Update(disabled=True)
         if event == lang["install"]:
-            #subprocess.Popen("py mc_installer.py " + values[0] + " " + values["-versions-"])
+            #subprocess.Popen(Path("py mc_installer.py " + values[0] + " " + values["-versions-"])
             import mc_installer
             mc_installer.main(values[0], values["-versions-"])
             if values[0] == lang["vanilla"]:

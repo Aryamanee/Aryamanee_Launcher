@@ -2,21 +2,22 @@ import PySimpleGUI as sg
 import msmcauth
 import json
 from subprocess import call
-from os import startfile
+#from os import startfile
+from pathlib import Path
 
 def main(pos = (323, 144)):
-    langfile = open("lang\\en_us.json", "r")
+    langfile = open(Path("lang/en_us.json"), "r")
     lang = json.loads(langfile.read())
     langfile.close()
 
 
     try:
-        accountsfile = open("accounts\\accounts.json", "r")
+        accountsfile = open(Path("accounts/accounts.json"), "r")
     except FileNotFoundError:
-        accountsfile = open("accounts\\accounts.json", "w+")
+        accountsfile = open(Path("accounts/accounts.json"), "w+")
         accountsfile.write("{}")
         accountsfile.close()
-        accountsfile = open("accounts\\accounts.json", "r")
+        accountsfile = open(Path("accounts/accounts.json"), "r")
     accounts = json.loads(accountsfile.read())
     accountsfile.close()
 
@@ -94,7 +95,7 @@ def main(pos = (323, 144)):
 
             accounts[login.uuid] = {"username": login.username, "email": values[0], "password": values[1], "cracked": "no"}
 
-            accountsfile = open("accounts\\accounts.json", "w+")
+            accountsfile = open(Path("accounts/accounts.json"), "w+")
             accountsfile.write(json.dumps(accounts))
             accountsfile.close()
 
