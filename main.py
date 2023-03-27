@@ -4,7 +4,6 @@ import minecraft_launcher_lib as mcll
 import json
 from accounts.account import account_class
 import subprocess
-from uuid import uuid4
 from pathlib import Path
 def main(pos=(0,0)):
     langfile = open(Path("lang/en_us.json"), "r")
