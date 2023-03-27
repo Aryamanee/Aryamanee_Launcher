@@ -1,6 +1,5 @@
 import os
 import subprocess
-
 import PySimpleGUI as sg
 import json
 import minecraft_launcher_lib as mcll
