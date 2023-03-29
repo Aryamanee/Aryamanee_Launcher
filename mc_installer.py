@@ -28,6 +28,8 @@ def main(type: str, ver: str):
         nonlocal current_status
         current_status=status
         window["statusbox"].Update(current_status)
+        if status == "Installation complete":
+            window.close()
 
     def set_progress(progress: int):
         nonlocal current_progress
