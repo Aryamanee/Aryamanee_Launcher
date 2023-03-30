@@ -1,8 +1,5 @@
 import PySimpleGUI as sg
-import msmcauth
 import json
-from subprocess import call
-#from os import startfile
 from uuid import uuid4
 from pathlib import Path
 

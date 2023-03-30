@@ -1,8 +1,6 @@
 import PySimpleGUI as sg
 import msmcauth
 import json
-from subprocess import call
-#from os import startfile
 from pathlib import Path
 
 def main(pos = (323, 144)):
