@@ -71,7 +71,7 @@ def main(pos=(0,0)):
                     "uuid": values[0].uuid,
                     "token": ""
                 }
-                cmd = mcll.command.get_minecraft_command(values[1]["id"], ".minecraft", options)
+                cmd = mcll.command.get_minecraft_command(values[1], ".minecraft", options)
                 subprocess.Popen(cmd)
             else:
                 try:
