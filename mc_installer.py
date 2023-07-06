@@ -12,6 +12,8 @@ def main(type: str, ver: str):
     current_progress = 0
     current_status = ""
 
+
+
     langfile = open(Path("lang/en_us.json"), "r")
     lang = json.loads(langfile.read())
     langfile.close()
@@ -67,6 +69,8 @@ def main(type: str, ver: str):
             subprocess.run(mcll.utils.get_java_executable()+" -jar "+f"forge-{fv}-installer.jar")
             os.remove(f"forge-{fv}-installer.jar")
     else:
+        window.close()
+    if current_status == "Installation complete":
         window.close()
 
 if __name__ == "__main__":
