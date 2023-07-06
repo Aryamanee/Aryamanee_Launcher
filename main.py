@@ -5,20 +5,27 @@ import json
 from accounts.account import account_class
 import subprocess
 from pathlib import Path
+from os import getenv, path, mkdir
 def main(pos=(0,0)):
-    langfile = open(Path("lang/en_us.json"), "r")
+    appdata = Path.joinpath(Path(getenv('LOCALAPPDATA')), Path("Aryamanee_Launcher"))
+    if not path.exists(appdata):
+        mkdir(appdata)
+    minecraft_folder = Path.joinpath(appdata, Path(".minecraft"))
+    if not path.exists(minecraft_folder):
+        mkdir(minecraft_folder)
+    langfile = open(Path.joinpath(Path("lang/en_us.json")), "r")
     lang = json.loads(langfile.read())
     langfile.close()
 
     sg.theme('DarkAmber')
 
     try:
-        accountsfile = open(Path("accounts/accounts.json"), "r")
+        accountsfile = open(Path.joinpath(appdata, Path("accounts.json")), "r")
     except FileNotFoundError:
-        accountsfile = open(Path("accounts/accounts.json"), "w+")
+        accountsfile = open(Path.joinpath(appdata, Path("accounts.json")), "w+")
         accountsfile.write("{}")
         accountsfile.close()
-        accountsfile = open(Path("accounts/accounts.json"), "r")
+        accountsfile = open(Path.joinpath(appdata, Path("accounts.json")), "r")
     accounts = json.loads(accountsfile.read())
     accountsfile.close()
     accountnames=[]
@@ -31,7 +38,7 @@ def main(pos=(0,0)):
         accountnames.append(account_class(acc, accounts[acc]["username"], cracked, accounts[acc]["email"], accounts[acc]["password"]))
 
     versionnames = []
-    for version in mcll.utils.get_installed_versions(".minecraft"):
+    for version in mcll.utils.get_installed_versions(minecraft_folder):
         versionnames.append(version["id"])
 
     layout = [[sg.Text(lang["account"], size=(7, 1)), sg.Combo(values=accountnames, readonly=True), sg.Button(lang["add_microsoft_account"]), sg.Button(lang["add_cracked_account"])],
@@ -71,7 +78,7 @@ def main(pos=(0,0)):
                     "uuid": values[0].uuid,
                     "token": ""
                 }
-                cmd = mcll.command.get_minecraft_command(values[1], ".minecraft", options)
+                cmd = mcll.command.get_minecraft_command(values[1], minecraft_folder, options)
                 subprocess.Popen(cmd)
             else:
                 try:
@@ -82,7 +89,7 @@ def main(pos=(0,0)):
                         "uuid": login.uuid,
                         "token": login.access_token
                     }
-                    cmd = mcll.command.get_minecraft_command(values[1], ".minecraft", options)
+                    cmd = mcll.command.get_minecraft_command(values[1], minecraft_folder, options)
                     subprocess.Popen(cmd)
                 except msmcauth.InvalidCredentials:
                     sg.popup(lang["incorrect_login"], title=lang["login_error"])

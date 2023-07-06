@@ -2,20 +2,24 @@ import PySimpleGUI as sg
 import msmcauth
 import json
 from pathlib import Path
+from os import getenv, path, mkdir
 
 def main(pos = (323, 144)):
+    appdata = Path.joinpath(Path(getenv('LOCALAPPDATA')), Path("Aryamanee_Launcher"))
+    if not path.exists(appdata):
+        mkdir(appdata)
+
     langfile = open(Path("lang/en_us.json"), "r")
     lang = json.loads(langfile.read())
     langfile.close()
 
-
     try:
-        accountsfile = open(Path("accounts/accounts.json"), "r")
+        accountsfile = open(Path.joinpath(appdata, Path("accounts.json")), "r")
     except FileNotFoundError:
-        accountsfile = open(Path("accounts/accounts.json"), "w+")
+        accountsfile = open(Path.joinpath(appdata, Path("accounts.json")), "w+")
         accountsfile.write("{}")
         accountsfile.close()
-        accountsfile = open(Path("accounts/accounts.json"), "r")
+        accountsfile = open(Path.joinpath(appdata, Path("accounts.json")), "r")
     accounts = json.loads(accountsfile.read())
     accountsfile.close()
 

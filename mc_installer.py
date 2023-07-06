@@ -6,8 +6,16 @@ import minecraft_launcher_lib as mcll
 from sys import argv
 import urllib.request
 from pathlib import Path
+from os import getenv, path, mkdir
 
 def main(type: str, ver: str):
+    appdata = Path.joinpath(Path(getenv('LOCALAPPDATA')), Path("Aryamanee_Launcher"))
+    if not path.exists(appdata):
+        mkdir(appdata)
+    minecraft_folder = Path.joinpath(appdata, Path(".minecraft"))
+    if not path.exists(minecraft_folder):
+        mkdir(minecraft_folder)
+
     current_max = 0
     current_progress = 0
     current_status = ""
@@ -51,7 +59,7 @@ def main(type: str, ver: str):
 }
 
 
-    mcdir = ".minecraft"
+    mcdir = minecraft_folder
     if type == lang["vanilla"]:
         mcll.install.install_minecraft_version(ver, mcdir, callback)
     elif type == lang["fabric"]:
@@ -64,7 +72,6 @@ def main(type: str, ver: str):
         else:
             print(mcll.utils.get_java_executable())
             fv = mcll.forge.find_forge_version(ver)
-            #mcll.forge.run_forge_installer(ver, "C:/Users/aryam/PycharmProjects/Aryamanee_Launcher/.minecraft/runtime/jre-legacy/windows-x64/jre-legacy/bin/java.exe")
             urllib.request.urlretrieve("https://files.minecraftforge.net/maven/net/minecraftforge/forge/"+fv+"/forge-"+fv+"-installer.jar", "forge-"+fv+"-installer.jar")
             subprocess.run(mcll.utils.get_java_executable()+" -jar "+f"forge-{fv}-installer.jar")
             os.remove(f"forge-{fv}-installer.jar")
