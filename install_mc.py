@@ -1,9 +1,6 @@
-import os
-
 import PySimpleGUI as sg
 import json
 import minecraft_launcher_lib as mcll
-import subprocess
 from pathlib import Path
 
 def main(pos = (323, 144)):
